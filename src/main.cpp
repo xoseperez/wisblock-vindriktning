@@ -30,12 +30,12 @@ void tx_handler(void) {
 	bme680_read();
 
 	lpp.reset();
-	lpp.addTemperature(1, bme680_temperature());
-	lpp.addRelativeHumidity(2, bme680_humidity());
-	lpp.addBarometricPressure(3, bme680_pressure());
-	lpp.addConcentration(4, bme680_gas_resistance());
-	lpp.addConcentration(5, pm1006_average());
-	lpp.addConcentration(6, pm1006_max());
+	lpp.addTemperature(1, bme680_temperature()); // 4 bytes
+	lpp.addRelativeHumidity(2, bme680_humidity()); // 3 byte
+	lpp.addBarometricPressure(3, bme680_pressure()); // 4 bytes
+	lpp.addAnalogInput(4, bme680_gas_resistance()); // 4 bytes
+	lpp.addAnalogInput(5, pm1006_average()); // 4 bytes
+	lpp.addAnalogInput(6, pm1006_max()); // 4 bytes
 	pm1006_reset();
 
 	lorawan_send(lpp.getBuffer(), lpp.getSize());
