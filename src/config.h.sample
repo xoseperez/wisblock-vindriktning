@@ -1,0 +1,54 @@
+/**
+ * @file config.h
+ * @author xose.perez@rakwireless.com
+ * @brief Vindriktning wisBlock Hack
+ * @version 0.1
+ * @date 2022-12-03
+ * 
+ * @copyright Copyright (c) 2022
+ */
+
+#ifndef _CONFIG_H
+#define _CONFIG_H
+
+// ---------------------------------------------------
+// GENERAL
+// ---------------------------------------------------
+
+#define LORAWAN_INTERVAL            300000
+
+// ---------------------------------------------------
+// LORAWAN
+// ---------------------------------------------------
+
+// MSB
+
+#define LORAWAN_USE_OTAA
+#ifdef LORAWAN_USE_OTAA
+#define LORAWAN_DEVEUI { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }
+#define LORAWAN_APPEUI { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }
+#define LORAWAN_APPKEY { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }
+#endif
+
+//#define LORAWAN_USE_ABP
+#ifdef LORAWAN_USE_ABP
+#define LORAWAN_DEVADDR 0x00000000;
+#define LORAWAN_APPSKEY { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
+#define LORAWAN_NWKSKEY { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
+#endif
+
+#define LORAWAN_DATARATE            DR_5		  		/* LoRaMac datarates definition, from DR_0 to DR_5 */
+#define LORAWAN_ADR		            LORAWAN_ADR_OFF
+#define LORAWAN_TX_POWER            TX_POWER_15	  		/* LoRaMac tx power definition, from TX_POWER_0 to TX_POWER_15 */
+#define JOINREQ_NBTRIALS            5			  		/* < Number of trials for the join request. */
+#define LORAWAN_CLASS               CLASS_A
+#define LORAWAN_PORT                1
+#define LORAWAN_CONFIRM             LMH_UNCONFIRMED_MSG
+
+// ---------------------------------------------------
+// POWER
+// ---------------------------------------------------
+
+#define SENSOR_POWER_GPIO           WB_IO2
+
+#endif // _CONFIG_H
