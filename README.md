@@ -1,6 +1,6 @@
 # IKEA Vindriktning WisBlock Hack
 
-This repository hold the code to connect a WisBlock RAK4631 to an IKEA Vindriktning air quality sensor. The code also expects a Bosch BME680 sensor connected to the WisBlock using a WisBlock Environment Sensor (RAK1906).
+This repository holds the code to connect a WisBlock RAK4631 to an IKEA Vindriktning air quality sensor and send the aire quality data over LoRaWAN to your LNS of choice. The code also expects a Bosch BME680 sensor connected to the WisBlock using a WisBlock Environment Sensor (RAK1906).
 
 ![IKEA Vindriktning](images/IMG_20221203_174934s.jpg)
 
@@ -15,11 +15,11 @@ These are the components required for this hack:
 * A JST1.0 battery connector and some wire
 * USB Type-C cable to flash the WisBlock
 
-The whole list is about $60 at the moment (but you should also consider shipping and customs costs).
+The whole list is between $60 and $70 at the moment (but you should also consider shipping and customs costs).
 
 ## Connecting the hardware
 
-The hack uses the solar panel connector in the WisBlock base to power the WisBlock module from the Vindriktning and the TX pad in the IKEA device to get the readings. Therefore we will need to solder 3 pads to the IKEA Vindriktning PCB:
+The hack uses the solar panel connector in the WisBlock base to power the WisBlock module from the Vindriktning and the REST pad in the IKEA device to get the readings. Therefore we will need to solder 3 pads to the IKEA Vindriktning PCB:
 
 |Vindriktning|WisBlock base|
 |---|---|
@@ -31,14 +31,14 @@ The hack uses the solar panel connector in the WisBlock base to power the WisBlo
 
 ![Detail of the IKEA Vindriktning pads](images/IMG_20221203_185911s.jpg)
 
-Pay special attention to not block the air vents on the enclosure with the WisBlock module. Use double side tape to tape it to the top side of the enclosure.
+Pay special attention to not block the air vents on the enclosure with the WisBlock module. Use double side tape to tape it to the top side of the enclosure with the environment sensor looking downwards.
 
 ![Taping the module](images/IMG_20221203_174322s.jpg)
 
 
 ## Building the firmware
 
-First step is to copy the `config.h.sample` file into `config.h` and edit it. At least you will have to define the credentials for the device after you have provisioned it on your LNS of choice: LORAWAN_DEVEUI, LORAWAN_APPEUI, LORAWAN_APPKEY. You can also change the other settings in the file to match your requirements. Mind the current payload size if 23 bytes, check the airtime depending on you zone and SF here: https://avbentem.github.io/airtime-calculator/ttn/eu868/23.
+First step is to copy the `config.h.sample` file into `config.h` and edit it. At least you will have to define the credentials for the device after you have provisioned it on your LNS of choice: LORAWAN_DEVEUI, LORAWAN_APPEUI, LORAWAN_APPKEY. You can also change the other settings in the file to match your requirements. Mind the current payload size is 23 bytes. Check the airtime depending on you zone and SF here: https://avbentem.github.io/airtime-calculator/ttn/eu868/23.
 
 The firmware has been prepared to be compiled using PlatformIO (https://platformio.org/), but the WisBlock RAK4631 is not yet supported by default so you will first have to add support for it manually after installing PlatformIO. You can follow the instructions to do so here: https://github.com/RAKWireless/WisBlock/tree/master/PlatformIO.
 
@@ -59,7 +59,7 @@ The firmware uses CayenneLPP (you can probably enable the CayenneLPP payload for
 |Average PM2.5|5|analog_5|integer|ug/m3|
 |Max PM2.5|6|analog_6|integer|ug/m3|
 
-The IKEA Vindriktning show green light for PM2.5 values under 30 ug/m3, orange between 30 and 100 ug/m3 and red above that.
+The IKEA Vindriktning shows green light for PM2.5 values under 30 ug/m3, orange between 30 and 100 ug/m3 and red above that.
 
 ## License
 
