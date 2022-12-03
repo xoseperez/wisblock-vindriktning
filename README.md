@@ -4,7 +4,7 @@ This repository hold the code to connect a WisBlock RAK4631 to an IKEA Vindriktn
 
 ![IKEA Vindriktning](images/IMG_20221203_174934s.jpg)
 
-## Hardware required
+## Required hardware
 
 These are the components required for this hack:
 
@@ -13,11 +13,11 @@ These are the components required for this hack:
 * RAKwireless nRF52840 Core (RAK4631)
 * RAKwireless Environment Sensor (RAK1906)
 * A JST1.0 battery connector and some wire
+* USB Type-C cable to flash the WisBlock
 
 The whole list is about $60 at the moment (but you should also consider shipping and customs costs).
 
 ## Connecting the hardware
-
 
 The hack uses the solar panel connector in the WisBlock base to power the WisBlock module from the Vindriktning and the TX pad in the IKEA device to get the readings. Therefore we will need to solder 3 pads to the IKEA Vindriktning PCB:
 
@@ -58,6 +58,8 @@ The firmware uses CayenneLPP (you can probably enable the CayenneLPP payload for
 |VOC|4|analog_4|integer|KOhms|
 |Average PM2.5|5|analog_5|integer|ug/m3|
 |Max PM2.5|6|analog_6|integer|ug/m3|
+
+The IKEA Vindriktning show green light for PM2.5 values under 30 ug/m3, orange between 30 and 100 ug/m3 and red above that.
 
 ## License
 
